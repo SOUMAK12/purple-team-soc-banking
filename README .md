@@ -762,4 +762,4 @@ This scenario demonstrates the core principle of the project: **Red Team activit
 - ✅ Auditd + Process Monitoring configured on the Linux agent
 - ✅ Sysmon wired into Wazuh on the Windows agent, with a sample alert-triage workflow
 - ✅ Suricata IDS deployed with custom lab detection rules
-- ✅ ### RDP Brute-Force Detection — Purple Team Validation
+- ✅ RDP Brute-Force Detection — Purple Team Validation
