@@ -1,7 +1,8 @@
 # Purple Team SOC Lab — Wazuh, MITRE ATT&CK & Detection Engineering
 
-A 4-VM VirtualBox lab built to deploy and harden a Wazuh SIEM, onboard Linux/Windows agents, and layer on detection engineering (FIM, vulnerability detection, VirusTotal integration, Auditd, Sysmon, Suricata IDS) — built as part of a Purple Team–based SOC Architecture project (SIEM + MITRE ATT&CK).
+An isolated 4-VM VirtualBox laboratory designed to demonstrate a Purple Team approach to SOC improvement. The lab combines attack simulation, centralized detection with Wazuh, security telemetry, MITRE ATT&CK mapping, and detection engineering across Windows and Linux environments.
 
+![Purple Team SOC Architecture](images/im0.png)  
 ## Lab Topology
 
 | # | Role | OS | Adapter 1 | Adapter 2 | IP |
