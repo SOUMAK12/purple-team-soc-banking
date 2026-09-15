@@ -1,6 +1,6 @@
-# Purple Team SOC Lab — Wazuh SIEM Deployment & Detection Engineering
+# Purple Team SOC Lab — Wazuh, MITRE ATT&CK & Detection Engineering
 
-A 4-VM VirtualBox lab built to deploy and harden a Wazuh SIEM, onboard Linux/Windows agents, and layer on detection engineering (FIM, vulnerability detection, VirusTotal integration, Auditd, Sysmon, Suricata IDS, Fail2ban) — built as part of a Purple Team–based SOC Architecture project (SIEM + MITRE ATT&CK).
+A 4-VM VirtualBox lab built to deploy and harden a Wazuh SIEM, onboard Linux/Windows agents, and layer on detection engineering (FIM, vulnerability detection, VirusTotal integration, Auditd, Sysmon, Suricata IDS) — built as part of a Purple Team–based SOC Architecture project (SIEM + MITRE ATT&CK).
 
 ## Lab Topology
 
@@ -729,9 +729,27 @@ sudo systemctl restart suricata
 ![Suricata alerts firing](images/image138.png)
 ![Suricata test result](images/image139.png)
 
-### Fail2ban — Simulated Brute-Force on the Linux Agent
+### RDP Brute-Force Detection — Purple Team Validation
 
-*(Section in progress — brute-force simulation against the Linux agent using Fail2ban / Hydra, mapped to MITRE ATT&CK T1110.)*
+A controlled RDP brute-force attack was simulated from the Kali Linux attacker against the Windows victim using Hydra.
+
+The objective was not only to generate authentication failures, but to evaluate and improve the SOC's detection capability through a Purple Team feedback cycle.
+
+**Attack → Detect → Analyze → Identify Gap → Tune Detection → Replay → Measure**
+
+During the first attack, Wazuh successfully collected Windows Event ID 4625 events corresponding to failed authentication attempts. However, individual events did not provide sufficient correlation to clearly identify the activity as a brute-force attack.
+
+This detection gap led to the creation of a custom Wazuh correlation rule designed to detect repeated authentication failures.
+
+The attack was then replayed to validate the improved detection logic.
+
+**Detection measurement:**
+
+- **Attack start (T0):** 15:28:52.665
+- **Alert detection (T1):** 15:29:47.856
+- **MTTD:** 55.191 seconds
+
+This scenario demonstrates the core principle of the project: Red Team activity is used to continuously improve Blue Team detection capabilities through Purple Team collaboration.
 
 ---
 
@@ -745,4 +763,4 @@ sudo systemctl restart suricata
 - ✅ Auditd + Process Monitoring configured on the Linux agent
 - ✅ Sysmon wired into Wazuh on the Windows agent, with a sample alert-triage workflow
 - ✅ Suricata IDS deployed with custom lab detection rules
-- 🚧 Fail2ban brute-force simulation — in progress
+- ✅ RDP Brute-Force Detection — Purple Team Validation
